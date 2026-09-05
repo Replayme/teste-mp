@@ -17,12 +17,36 @@ export interface Pedido {
 /**
  * Monta o texto do pedido que chega no WhatsApp da loja.
  *
- * Este texto É o pedido: é a única coisa que a cozinha vai ler.
- * Use `brl(centavos)` para os valores e `\n` para quebrar linha.
+ * Este texto É o pedido: é a única coisa que a cozinha vai ler, no meio do
+ * movimento. Por isso o modo de entrega vem logo no topo, e não no rodapé:
+ * é o que decide se o item é embalado para viagem ou servido no salão.
  */
 export function montarMensagem(pedido: Pedido): string {
-  // TODO(human)
-  return `Pedido de ${pedido.nome} — total ${brl(pedido.total)}`
+  const linhas: string[] = [`*Novo pedido — ${LOJA.nome}*`, '']
+
+  if (pedido.modo === 'entrega') {
+    linhas.push('*ENTREGA*', `Endereço: ${pedido.endereco}`)
+  } else {
+    linhas.push('*RETIRADA NO LOCAL*')
+  }
+
+  linhas.push(`Cliente: ${pedido.nome}`, '', '*Itens*')
+
+  for (const { produto, quantidade } of pedido.itens) {
+    linhas.push(`• ${quantidade}x ${produto.nome} — ${brl(produto.preco * quantidade)}`)
+  }
+
+  linhas.push('', `Subtotal: ${brl(pedido.subtotal)}`)
+  if (pedido.taxa > 0) {
+    linhas.push(`Entrega: ${brl(pedido.taxa)}`)
+  }
+  linhas.push(`*Total: ${brl(pedido.total)}*`)
+
+  if (pedido.observacoes) {
+    linhas.push('', `*Observações:* ${pedido.observacoes}`)
+  }
+
+  return linhas.join('\n')
 }
 
 /** Abre o WhatsApp da loja com o pedido já escrito. */
