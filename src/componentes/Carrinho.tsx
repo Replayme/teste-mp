@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCarrinho } from '../carrinho/CarrinhoContext'
 import { brl } from '../lib/moeda'
 import { linkPedido } from '../lib/whatsapp'
@@ -11,6 +11,17 @@ export function Carrinho({ aberto, aoFechar }: { aberto: boolean; aoFechar: () =
   const [endereco, setEndereco] = useState('')
   const [observacoes, setObservacoes] = useState('')
   const status = statusLoja()
+
+  // Trava o scroll da página enquanto a gaveta está aberta. Sem isso, no
+  // celular o dedo "vaza" do carrinho e rola o cardápio por baixo.
+  useEffect(() => {
+    if (!aberto) return
+    const anterior = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = anterior
+    }
+  }, [aberto])
 
   if (!aberto) return null
 
