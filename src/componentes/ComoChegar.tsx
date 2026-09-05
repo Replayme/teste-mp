@@ -1,5 +1,6 @@
 import { LOJA } from '../dados/loja'
 import { statusLoja } from '../lib/horario'
+import { brl } from '../lib/moeda'
 
 export function ComoChegar() {
   const status = statusLoja()
@@ -22,8 +23,8 @@ export function ComoChegar() {
         </div>
         <div className="info-cartao">
           <h3>Entrega</h3>
-          <p>Taxa de {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(LOJA.taxaEntrega / 100)}</p>
-          <p>Pedido mínimo de {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(LOJA.minimoEntrega / 100)} para entrega.</p>
+          <p>Taxa de {brl(LOJA.taxaEntrega)}</p>
+          <p>Pedido mínimo de {brl(LOJA.minimoEntrega)} para entrega.</p>
         </div>
       </div>
     </section>
