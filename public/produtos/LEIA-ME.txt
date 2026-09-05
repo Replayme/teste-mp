@@ -1,0 +1,12 @@
+Fotos dos produtos.
+
+Coloque os arquivos aqui (ex: coxinha.jpg) e referencie em
+src/dados/produtos.ts com o caminho a partir da raiz:
+
+  imagem: '/produtos/coxinha.jpg'
+
+Sem a linha "imagem", o cartao mostra o emoji do produto.
+
+Dicas:
+- Proporcao 4:3 (ex: 800x600). O cartao corta com object-fit: cover.
+- Prefira .webp ou .jpg com menos de 200 KB por foto.

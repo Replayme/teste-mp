@@ -7,7 +7,14 @@ export interface Produto {
   /** Preço em CENTAVOS. 1290 = R$ 12,90. */
   preco: number
   categoria: Categoria
+  /** Espaço reservado enquanto não há foto. */
   emoji: string
+  /**
+   * Caminho da foto, ex: '/produtos/coxinha.jpg'.
+   * Coloque o arquivo em public/produtos/ e referencie a partir da raiz.
+   * Sem foto, o cartão mostra o emoji — nada quebra.
+   */
+  imagem?: string
   destaque?: boolean
   /** Fora de estoque some do cardápio sem precisar apagar o item. */
   indisponivel?: boolean
