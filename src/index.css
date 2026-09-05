@@ -1,111 +1,144 @@
+/* Identidade Cacilda & Lola: verde-escuro profundo, laranja quente, creme. */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --verde: #16261f;
+  --verde-claro: #1f3a2e;
+  --verde-linha: #2c4c3d;
+  --laranja: #e7622a;
+  --laranja-claro: #ff7c45;
+  --creme: #f5ecdc;
+  --creme-suave: #cdbfa8;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --raio: 14px;
+  --serifada: Georgia, "Times New Roman", serif;
+  --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  color-scheme: dark;
+  background: var(--verde);
+  color: var(--creme);
+  font-family: var(--sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--verde); color: var(--creme); }
+main { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3, .marca-nome { font-family: var(--serifada); font-weight: 400; }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* ---------- Cabeçalho ---------- */
+.cabecalho {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: rgba(22, 38, 31, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--verde-linha);
 }
+.marca { display: flex; flex-direction: column; line-height: 1.1; }
+.marca-nome { font-size: 24px; font-style: italic; color: var(--creme); }
+.marca-sub { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--creme-suave); }
+.cabecalho-acoes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--creme-suave); }
+.status-bolinha { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.status-aberto { color: #6fd08c; }
+.status-fechado { color: #d99a5b; }
 
-body {
-  margin: 0;
+.botao-carrinho {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--laranja); color: #fff; border: 0;
+  padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer;
 }
+.botao-carrinho:hover { background: var(--laranja-claro); }
+.contador { background: rgba(0, 0, 0, 0.28); border-radius: 999px; padding: 1px 8px; font-size: 12px; }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-block; border: 0; border-radius: 999px; cursor: pointer;
+  padding: 13px 26px; font-size: 15px; font-weight: 600; text-decoration: none; text-align: center;
 }
+.botao-primario { background: var(--laranja); color: #fff; }
+.botao-primario:hover { background: var(--laranja-claro); }
+.botao-primario:disabled { background: var(--verde-linha); color: var(--creme-suave); cursor: not-allowed; }
+.botao-secundario { background: transparent; color: var(--creme); border: 1px solid var(--verde-linha); }
+.botao-secundario:hover { border-color: var(--laranja); }
+.botao-pequeno { padding: 8px 16px; font-size: 13px; }
+.botao-largo { width: 100%; margin-top: 8px; }
+.botao-texto { width: 100%; margin-top: 10px; background: none; border: 0; color: var(--creme-suave); font-size: 13px; cursor: pointer; text-decoration: underline; }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
+/* ---------- Hero ---------- */
+.hero { text-align: center; padding: 72px 0 56px; }
+.hero-ornamento { color: var(--laranja); letter-spacing: 4px; margin: 0 0 18px; }
+.hero-titulo { font-size: clamp(30px, 5.5vw, 52px); font-style: italic; margin: 0 0 16px; line-height: 1.18; }
+.hero-sub { color: var(--creme-suave); margin: 0 0 30px; font-size: 15px; }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* ---------- Seções ---------- */
+.secao-titulo { font-size: 32px; font-style: italic; text-align: center; margin: 56px 0 24px; }
+.filtros { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin-bottom: 30px; }
+.chip {
+  background: transparent; color: var(--creme-suave);
+  border: 1px solid var(--verde-linha); border-radius: 999px;
+  padding: 8px 18px; font-size: 14px; cursor: pointer;
 }
+.chip:hover { border-color: var(--laranja); color: var(--creme); }
+.chip-ativo { background: var(--laranja); border-color: var(--laranja); color: #fff; }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* ---------- Produtos ---------- */
+.grade { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+.produto { display: flex; gap: 14px; background: var(--verde-claro); border: 1px solid var(--verde-linha); border-radius: var(--raio); padding: 16px; }
+.produto-imagem { font-size: 38px; line-height: 1; flex-shrink: 0; }
+.produto-corpo { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.produto-nome { margin: 0 0 6px; font-size: 18px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tag { background: var(--laranja); color: #fff; font-family: var(--sans); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; padding: 3px 8px; border-radius: 999px; }
+.produto-desc { margin: 0 0 14px; font-size: 13.5px; color: var(--creme-suave); line-height: 1.45; }
+.produto-rodape { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.produto-preco { font-family: var(--serifada); font-size: 19px; color: var(--creme); }
+
+/* ---------- Como chegar ---------- */
+.info-grade { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.info-cartao { background: var(--verde-claro); border: 1px solid var(--verde-linha); border-radius: var(--raio); padding: 22px; }
+.info-cartao h3 { margin: 0 0 10px; font-size: 20px; font-style: italic; }
+.info-cartao p { margin: 0 0 12px; color: var(--creme-suave); font-size: 14px; line-height: 1.5; }
+.texto-aberto { color: #6fd08c; }
+.texto-fechado { color: #d99a5b; }
+
+/* ---------- Carrinho ---------- */
+.fundo-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); display: flex; justify-content: flex-end; z-index: 50; }
+.gaveta { width: min(430px, 100%); height: 100%; overflow-y: auto; background: var(--verde); border-left: 1px solid var(--verde-linha); padding: 22px; }
+.gaveta-topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.gaveta-topo h2 { margin: 0; font-size: 26px; font-style: italic; }
+.fechar { background: none; border: 0; color: var(--creme); font-size: 30px; line-height: 1; cursor: pointer; }
+.vazio { color: var(--creme-suave); text-align: center; padding: 40px 0; }
+.aviso { background: rgba(231, 98, 42, 0.14); border: 1px solid var(--laranja); border-radius: 10px; padding: 12px 14px; font-size: 13px; line-height: 1.45; }
+
+.itens { list-style: none; padding: 0; margin: 0 0 20px; }
+.item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--verde-linha); }
+.item-emoji { font-size: 24px; }
+.item-info { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.item-info strong { font-weight: 600; font-size: 14.5px; }
+.item-preco { font-size: 13px; color: var(--creme-suave); }
+.qtd { display: flex; align-items: center; gap: 10px; }
+.qtd button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--verde-linha); background: var(--verde-claro); color: var(--creme); font-size: 16px; cursor: pointer; }
+.qtd button:hover { border-color: var(--laranja); }
+
+.modo { border: 1px solid var(--verde-linha); border-radius: var(--raio); padding: 14px; margin: 0 0 16px; }
+.modo legend { padding: 0 8px; font-size: 13px; color: var(--creme-suave); }
+.opcao { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 9px; font-size: 14px; cursor: pointer; }
+.opcao-ativa { background: var(--verde-claro); }
+.opcao input { accent-color: var(--laranja); }
+
+.campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; font-size: 13px; color: var(--creme-suave); }
+.campo input, .campo textarea {
+  background: var(--verde-claro); border: 1px solid var(--verde-linha); border-radius: 10px;
+  padding: 11px 13px; color: var(--creme); font-family: inherit; font-size: 14px; resize: vertical;
 }
+.campo input:focus, .campo textarea:focus { outline: none; border-color: var(--laranja); }
+
+.totais { border-top: 1px solid var(--verde-linha); padding-top: 14px; margin-bottom: 14px; }
+.totais div { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; color: var(--creme-suave); }
+.totais .total { font-family: var(--serifada); font-size: 21px; color: var(--creme); padding-top: 10px; }
+
+/* ---------- Rodapé ---------- */
+.rodape { margin-top: 72px; padding: 36px 20px; text-align: center; border-top: 1px solid var(--verde-linha); color: var(--creme-suave); font-size: 14px; }
+.rodape p { margin: 5px 0; }
+.rodape-marca { font-family: var(--serifada); font-style: italic; font-size: 22px; color: var(--creme); }
+.rodape-fino { font-size: 12px; opacity: 0.75; }
